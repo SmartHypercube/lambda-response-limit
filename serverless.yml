@@ -1,0 +1,28 @@
+service: lambda-response-limit
+frameworkVersion: '3'
+configValidationMode: off
+
+provider:
+  name: aws
+  region: us-west-1
+
+package:
+  individually: true
+  patterns:
+    - '!**'
+
+functions:
+  nodejs:
+    runtime: nodejs20.x
+    handler: nodejs.handler
+    url: true
+    package:
+      patterns:
+        - nodejs.mjs
+  python:
+    runtime: python3.12
+    handler: python.handler
+    url: true
+    package:
+      patterns:
+        - python.py
